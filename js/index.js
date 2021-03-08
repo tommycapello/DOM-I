@@ -18,13 +18,13 @@ const siteContent = {
     "features-content": "Features content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
     "about-h4":"About",
     "about-content": "About content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
-    "middle-img-src": "img/mid-page-accent.jpg",
     "services-h4":"Services",
     "services-content": "Services content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
     "product-h4":"Product",
     "product-content": "Product content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
     "vision-h4":"Vision",
     "vision-content": "Vision content elementum magna eros, ac posuere elvit tempus et. Suspendisse vel tempus odio, in interdutm nisi. Suspendisse eu ornare nisl. Nullam convallis augue justo, at imperdiet metus scelerisque quis.",
+    "middle-img-src": "img/mid-page-accent.jpg"
   },
   "contact": {
     "contact-h4" : "Contact",
@@ -38,5 +38,43 @@ const siteContent = {
 };
 
 // Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
+let logo = document.querySelector("#logo-img");
+logo.setAttribute('src', siteContent["nav"]["img-src"]);
+
+const newNav = document.querySelectorAll("nav a");
+newNav.forEach( (item, index)=> {
+  item.innerText = siteContent["nav"][Object.keys(siteContent["nav"])[index]]
+});
+
+const h1 = document.querySelector("h1");
+h1.innerHTML = siteContent["cta"]["h1"].split(" ").join("<br>");
+
+const ctaImg = document.querySelector("#cta-img");
+ctaImg.setAttribute("src", siteContent["cta"]["img-src"]);
+
+const newButton = document.querySelector("button");
+newButton.textContent = siteContent["cta"]["button"];
+
+
+const content = document.querySelectorAll(".text-content");
+const stringsC = Object.values(siteContent["main-content"]);
+for(let i = 0; i< content.length; i++)
+{
+  content[i].children[0].textContent = stringsC[i*2];
+  content[i].children[1].textContent = stringsC[i*2+1];
+}
+
+const midImg = document.querySelector("#middle-img");
+midImg.setAttribute('src', siteContent["main-content"]["middle-img-src"]);
+
+const contact = document.querySelectorAll(".contact")[0].children;
+const stringsT = Object.values(siteContent["contact"]);
+for(let i = 0; i < contact.length; i++)
+{
+  contact[i].textContent = stringsT[i];
+}
+
+const newfooter = document.querySelector("footer")
+newfooter.textContent = siteContent.footer["copyright"];
+
+
